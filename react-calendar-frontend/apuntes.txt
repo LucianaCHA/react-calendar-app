@@ -1,0 +1,17 @@
+inicio con npx serve -s build (sirve el sitio productivo dese la carpeta build)
+
+self.addEventListener('fetch', (event) =>{
+  if(event.request.url !== 'http://localhost:4000/api/auth/renew' ) return
+  
+  // recomieda usar fetch para hacer peticiones http desde el service worker para no cargar de mas . recomienda trabajar de la forma ms pura posible 
+
+  // esto es network only
+  const response = fetch(event.request)
+  .then((response)=> {
+    return response.clone()
+  })
+
+  event.respondWith(response)
+
+  
+} )
